@@ -69,7 +69,7 @@ class HomeAdmin extends BaseController
         $bayarModel = new BayarsModel();
         $data['menu'] = $this->menu;
         $data['title'] = "Validasi Pembayaran";
-        $data['databayar'] = $bayarModel->join('personal_data', 'personal_data.user_id=tb_bayar.user_id')->findAll();
+        $data['databayar'] = $bayarModel->select('tb_bayar.id, tb_bayar.user_id, tb_bayar.date, tb_bayar.jmlh_bayar, tb_bayar.bukti_bayar, tb_bayar.status, personal_data.fullname')->join('personal_data', 'personal_data.user_id=tb_bayar.user_id', 'left')->findAll();
         return view('admin/validasi_bayar', $data);
     }
 
@@ -79,8 +79,7 @@ class HomeAdmin extends BaseController
         $personalModel = new PersonalData();
         $data['menu'] = $this->menu;
         $data['title'] = "Validasi Pembayaran";
-        $data['bayarbyid'] = $bayarModel->where('user_id', $id)->first();
-        $data['personal'] = $personalModel->where('user_id', $id)->first();
+        $data['bayarbyid'] = $bayarModel->select('tb_bayar.id, tb_bayar.user_id, tb_bayar.date, tb_bayar.jmlh_bayar, tb_bayar.bukti_bayar, tb_bayar.status, personal_data.fullname')->join('personal_data', 'personal_data.user_id=tb_bayar.user_id', 'left')->where('tb_bayar.id', $id)->first();
         return view('admin/detil_validasi', $data);
     }
 
@@ -128,7 +127,7 @@ class HomeAdmin extends BaseController
 
 
         $bayarModel->update($id, $validData);
-        session()->setFlashdata('message', 'Data Pembayaran Berhasil dikonfirmasi');
+        session()->setFlashdata('success', 'Validasi Pembayaran Berhasil disimpan');
         return redirect()->to('admin/validasi');
     }
 }

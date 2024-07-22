@@ -10,7 +10,6 @@
 
 <?= $this->section('content'); ?>
 
-
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Validasi Pembayaran</h1>
 
@@ -33,7 +32,7 @@
                     <tr>
                         <td><?= $nomor ?></td>
                         <td>
-                            <a href="<?= base_url('admin/validasi/') . $data['user_id'] ?>"><?= $data['fullname']; ?></a>
+                            <a href="<?= base_url('admin/validasi/') . $data['id'] ?>"><?= $data['fullname']; ?></a>
                         </td>
                         <td><?= $data['date']; ?></td>
                         <td><?= number_to_currency($data['jmlh_bayar'], 'IDR', 'ID', 2);  ?></td>
@@ -63,4 +62,10 @@
     </div>
 </div>
 
+<?= $this->endSection(); ?>
+<?= $this->section('footer'); ?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?= base_url('assets/js/validasi_bayar.js') ?>"></script>
 <?= $this->endSection(); ?>

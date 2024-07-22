@@ -2,8 +2,6 @@
 
 <?= $this->section('content'); ?>
 
-
-
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Daftar Detil Peserta</h1>
 <div class="row">
@@ -116,7 +114,24 @@
                                 <th><?= $bayar['date']; ?></th>
                                 <td class="text-right"><?= number_to_currency($bayar['jmlh_bayar'], 'IDR', 'ID', 2);  ?></td>
                                 <td>
-                                    <?= $bayar['status'] == 1 ? '<span class="pill badge badge-pill badge-warning" data-id =' . $bayar['id'] . '>Process</span>' : '<span class="pill badge badge-pill badge-success" data-id =' . $bayar['id'] . '>Validated</span>' ?>
+                                    <?php
+                                    if ($bayar['status'] == 1) {
+                                        # code...
+                                        echo '<span class="pill badge badge-pill badge-warning" data-id =' . $bayar['id'] . '>Process</span>';
+                                    }
+                                    if ($bayar['status'] == 2) {
+                                        # code...
+                                        echo '<span class="pill badge badge-pill badge-success" data-id =' . $bayar['id'] . '>Approved</span>';
+                                    }
+                                    if ($bayar['status'] == 3) {
+                                        # code...
+                                        echo '<span class="pill badge badge-pill badge-danger" data-id =' . $bayar['id'] . '>Rejected</span>';
+                                    }
+                                    if ($bayar['status'] == 4) {
+                                        # code...
+                                        echo '<span class="pill badge badge-pill badge-info" data-id =' . $bayar['id'] . '>Dicount</span>';
+                                    }
+                                    ?>
 
                                 </td>
                             </tr>

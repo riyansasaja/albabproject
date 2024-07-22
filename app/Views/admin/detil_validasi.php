@@ -2,11 +2,6 @@
 
 <?= $this->section('content'); ?>
 
-<?php
-var_dump($bayarbyid);
-?>
-
-
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Detil Validasi</h1>
 
@@ -23,7 +18,7 @@ var_dump($bayarbyid);
                 ?>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" id="fullname" value="<?= $personal['fullname']; ?>" disabled>
+                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['fullname']; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tgl Bayar</label>

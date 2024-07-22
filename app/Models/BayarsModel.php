@@ -58,6 +58,9 @@ class BayarsModel extends Model
         $db      = \Config\Database::connect();
         $builder = $db->table('tb_bayar');
         $builder->selectSum('jmlh_bayar');
-        return $builder->getWhere(['user_id' => $userId])->getResultArray();
+        $builder->where('user_id', $userId);
+        $builder->where('status !=', 3);
+        $builder->where('status !=', 1);
+        return $builder->get()->getResultArray();
     }
 }

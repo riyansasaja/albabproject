@@ -2,9 +2,14 @@
 <?= $this->section('nextcard'); ?>
 <?php
 
+
 if ($bayars) {
     # code...
     $telahBayar = $totalbayar[0]['jmlh_bayar'];
+    if ($telahBayar == null) {
+        # code...
+        $telahBayar = 0;
+    }
 } else {
     # code...
     $telahBayar = 0;
@@ -72,7 +77,24 @@ $sisaBayar = $hargaTiket - $telahBayar;
                                         <th><?= $bayar['date']; ?></th>
                                         <td class="text-right"><?= number_to_currency($bayar['jmlh_bayar'], 'IDR', 'ID', 2);  ?></td>
                                         <td>
-                                            <?= $bayar['status'] == 1 ? '<span class="pill badge badge-pill badge-warning" data-id =' . $bayar['id'] . '>Process</span>' : '<span class="pill badge badge-pill badge-success" data-id =' . $bayar['id'] . '>Validated</span>' ?>
+                                            <?php
+                                            if ($bayar['status'] == 1) {
+                                                # code...
+                                                echo '<span class="pill badge badge-pill badge-warning" data-id =' . $bayar['id'] . '>Process</span>';
+                                            }
+                                            if ($bayar['status'] == 2) {
+                                                # code...
+                                                echo '<span class="pill badge badge-pill badge-success" data-id =' . $bayar['id'] . '>Approved</span>';
+                                            }
+                                            if ($bayar['status'] == 3) {
+                                                # code...
+                                                echo '<span class="pill badge badge-pill badge-danger" data-id =' . $bayar['id'] . '>Rejected</span>';
+                                            }
+                                            if ($bayar['status'] == 4) {
+                                                # code...
+                                                echo '<span class="pill badge badge-pill badge-info" data-id =' . $bayar['id'] . '>Dicount</span>';
+                                            }
+                                            ?>
 
                                         </td>
                                     </tr>
