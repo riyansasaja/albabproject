@@ -7,6 +7,7 @@ use App\Models\BayarsModel;
 use App\Models\MenuModel;
 use App\Models\PersonalData;
 use CodeIgniter\HTTP\ResponseInterface;
+use PhpParser\Node\Stmt\Echo_;
 
 class HomeAdmin extends BaseController
 {
@@ -61,5 +62,15 @@ class HomeAdmin extends BaseController
         $data['data_peserta'] = $personalModel->where('user_id', $id)->first();
         $data['bayarbyid'] = $bayarModel->where('user_id', $id)->findAll();
         return view('admin/detilpeserta', $data);
+    }
+
+    public function validations()
+    {
+        $bayarModel = new BayarsModel();
+        $personalModel = new PersonalData();
+        $data['menu'] = $this->menu;
+        $data['title'] = "Validasi Pembayaran";
+        $data['databayar'] = $bayarModel->join('personal_data', 'personal_data.user_id=tb_bayar.user_id')->findAll();
+        return view('admin/validasi_bayar', $data);
     }
 }
