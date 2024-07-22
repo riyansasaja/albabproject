@@ -43,11 +43,15 @@
                                 echo "Process";
                             }
                             if ($data['status'] == 2) {
-                                echo "Validated";
+                                echo "Approved";
                             }
                             if ($data['status'] == 3) {
-                                echo "Dicount";
+                                echo "Rejected";
                             }
+                            if ($data['status'] == 4) {
+                                echo "Discount";
+                            }
+
 
                             ?>
                         </td>

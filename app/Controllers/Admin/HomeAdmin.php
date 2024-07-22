@@ -88,7 +88,7 @@ class HomeAdmin extends BaseController
     {
         $bayarModel = new BayarsModel();
         if (!$this->request->is('post')) {
-            return view('admin/validasi');
+            return redirect()->to('admin/validasi');
         }
 
         $rules = [
@@ -96,15 +96,37 @@ class HomeAdmin extends BaseController
             'status' => 'required'
         ];
         $id = $this->request->getPost('id');
-        $data = [
-            'jmlh_bayar' => $this->request->getPost('jmlh_bayar'),
-            'status' => 2
-        ];
+        $submitform = $this->request->getPost('submitform');
+
+        if ($submitform == 'terima') {
+            # code...
+            $data = [
+                'jmlh_bayar' => $this->request->getPost('jmlh_bayar'),
+                'status' => 2
+            ];
+        }
+        if ($submitform == 'tolak') {
+            # code...
+            $data = [
+                'jmlh_bayar' => $this->request->getPost('jmlh_bayar'),
+                'status' => 3
+            ];
+        }
+
+        if ($submitform == 'cancel') {
+            # code...
+            $data = [
+                'jmlh_bayar' => $this->request->getPost('jmlh_bayar'),
+                'status' => 1
+            ];
+        }
 
         if (!$this->validateData($data, $rules)) {
-            return view('admin/validasi');
+            return redirect()->to('admin/validasi');
         }
         $validData = $this->validator->getValidated();
+
+
         $bayarModel->update($id, $validData);
         session()->setFlashdata('message', 'Data Pembayaran Berhasil dikonfirmasi');
         return redirect()->to('admin/validasi');

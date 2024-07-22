@@ -31,12 +31,16 @@ var_dump($bayarbyid);
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jumlah Bayar</label>
-                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['jmlh_bayar']; ?>" name="jmlh_bayar">
+                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['jmlh_bayar']; ?>" name="jmlh_bayar" <?= $bayarbyid['status'] == 2 ? 'readonly' : '' ?>>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Terima</button>
-                <button type="submit" class="btn btn-danger">Tolak</button>
-                <a href="<?= base_url('admin/validasi/') ?>" class="btn btn-info">Batal</a>
+                <?php if ($bayarbyid['status'] != 1) : ?>
+                    <button type="submit" class="btn btn-secondary btn-block mb-3" disabled>Has Validated</button>
+                    <button type="submit" name="submitform" value="cancel" class="btn btn-danger">Cancel Validation</button>
+                <?php else : ?>
+                    <button type="submit" name="submitform" value="terima" class="btn btn-primary">Terima</button>
+                    <button type="submit" name="submitform" value="tolak" class="btn btn-danger">Tolak</button>
+                <?php endif; ?>
+                <a href="<?= base_url('admin/validasi') ?>" class="btn btn-info">Kembali</a>
                 <?= form_close() ?>
             </div>
         </div>
