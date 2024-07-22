@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="row"><?= $nomor; ?></th>
                         <td>
-                            <a href="<?= base_url('admin/peserta/') . $peserta['id'] ?>"><?= $peserta['fullname'];  ?></a>
+                            <a href="<?= base_url('admin/peserta/') . $peserta['user_id'] ?>"><?= $peserta['fullname'];  ?></a>
 
                         </td>
                         <td><?= $peserta['jenis_kelamin'];  ?></td>

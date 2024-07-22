@@ -48,6 +48,8 @@ class Home extends BaseController
         $rules = [
             // @TODO
             'user_id' => 'required',
+            'email' => 'required',
+            'fullname' => 'required',
             'jenis_kelamin' => 'required|in_list[Laki-laki, Perempuan]',
             'asal_sekolah' => 'required',
             'cita_cita' => 'required',

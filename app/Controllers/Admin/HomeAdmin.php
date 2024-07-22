@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\BayarsModel;
 use App\Models\MenuModel;
 use App\Models\PersonalData;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -13,6 +14,7 @@ class HomeAdmin extends BaseController
 
     public function __construct()
     {
+        helper('number');
 
         $menuModel = new MenuModel();
 
@@ -52,10 +54,12 @@ class HomeAdmin extends BaseController
 
     public function pesertabyID($id)
     {
+        $bayarModel = new BayarsModel();
         $personalModel = new PersonalData();
         $data['menu'] = $this->menu;
         $data['title'] = "Daftar Peserta";
-        $data['data_peserta'] = $personalModel->where('id', $id)->first();
+        $data['data_peserta'] = $personalModel->where('user_id', $id)->first();
+        $data['bayarbyid'] = $bayarModel->where('user_id', $id)->findAll();
         return view('admin/detilpeserta', $data);
     }
 }
