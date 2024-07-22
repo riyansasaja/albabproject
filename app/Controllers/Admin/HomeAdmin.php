@@ -12,10 +12,10 @@ use PhpParser\Node\Stmt\Echo_;
 class HomeAdmin extends BaseController
 {
     private $menu;
+    protected $helpers = ['form', 'number'];
 
     public function __construct()
     {
-        helper('number');
 
         $menuModel = new MenuModel();
 
@@ -67,10 +67,46 @@ class HomeAdmin extends BaseController
     public function validations()
     {
         $bayarModel = new BayarsModel();
-        $personalModel = new PersonalData();
         $data['menu'] = $this->menu;
         $data['title'] = "Validasi Pembayaran";
         $data['databayar'] = $bayarModel->join('personal_data', 'personal_data.user_id=tb_bayar.user_id')->findAll();
         return view('admin/validasi_bayar', $data);
+    }
+
+    public function validationbyId($id)
+    {
+        $bayarModel = new BayarsModel();
+        $personalModel = new PersonalData();
+        $data['menu'] = $this->menu;
+        $data['title'] = "Validasi Pembayaran";
+        $data['bayarbyid'] = $bayarModel->where('user_id', $id)->first();
+        $data['personal'] = $personalModel->where('user_id', $id)->first();
+        return view('admin/detil_validasi', $data);
+    }
+
+    public function validated()
+    {
+        $bayarModel = new BayarsModel();
+        if (!$this->request->is('post')) {
+            return view('admin/validasi');
+        }
+
+        $rules = [
+            'jmlh_bayar' => 'required',
+            'status' => 'required'
+        ];
+        $id = $this->request->getPost('id');
+        $data = [
+            'jmlh_bayar' => $this->request->getPost('jmlh_bayar'),
+            'status' => 2
+        ];
+
+        if (!$this->validateData($data, $rules)) {
+            return view('admin/validasi');
+        }
+        $validData = $this->validator->getValidated();
+        $bayarModel->update($id, $validData);
+        session()->setFlashdata('message', 'Data Pembayaran Berhasil dikonfirmasi');
+        return redirect()->to('admin/validasi');
     }
 }

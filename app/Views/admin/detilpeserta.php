@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <th>Siapa Tokoh Yang Menginspirasi Dalam Kehidupan Anda</th>
-                            <td>t<?= $data_peserta['stmdka'] ?></td>
+                            <td><?= $data_peserta['stmdka'] ?></td>
                         </tr>
                         <tr>
                             <th>Apa Pengalaman Yang Paling Berkesan Dalam Hidup Anda</th>
