@@ -177,4 +177,13 @@ class Home extends BaseController
         $databyid = $bayarmodel->where('id', $id)->first();
         return json_encode($databyid);
     }
+
+
+    //view Profile
+    public function viewProfile()
+    {
+        $personalModel = new PersonalData();
+        $data['data_peserta'] = $personalModel->where('user_id', user()->id)->first();
+        return view('user/profile', $data);
+    }
 }

@@ -18,11 +18,11 @@
                 ?>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['fullname']; ?>" disabled>
+                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['fullname']; ?>" name="nama" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tgl Bayar</label>
-                    <input type="text" class="form-control" id="fullname" value="<?= $bayarbyid['date']; ?>" disabled>
+                    <input type="text" class="form-control" id="tgl_bayar" value="<?= $bayarbyid['date']; ?>" name="tgl_bayar" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Jumlah Bayar</label>

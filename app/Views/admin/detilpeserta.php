@@ -2,6 +2,9 @@
 
 <?= $this->section('content'); ?>
 
+<?php
+var_dump($data_peserta);
+?>
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Daftar Detil Peserta</h1>
 <div class="row">
@@ -105,6 +108,7 @@
         <div class="card shadow">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#diskonModal" id="diskon">Add Diskon</button>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -143,6 +147,48 @@
     </div>
 
 
+</div>
+
+
+
+
+<!-- modalDiskon -->
+<div class="modal fade" id="diskonModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $hidden = [
+                    'user_id' => $data_peserta['user_id'],
+                    'fullname' => $data_peserta['fullname']
+                ];
+                echo form_open('admin/addDiscount', '', $hidden);
+                ?>
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Diskon</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                        </div>
+                        <input type="number" class="form-control" aria-describedby="basic-addon1" name="jmlh_bayar" id="jumlah">
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <?= form_close() ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?= $this->endSection(); ?>
