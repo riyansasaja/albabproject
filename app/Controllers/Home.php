@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\BayarsModel;
 use App\Models\PersonalData;
+use Myth\Auth\Models\UserModel;
 
 class Home extends BaseController
 {
@@ -185,5 +186,28 @@ class Home extends BaseController
         $personalModel = new PersonalData();
         $data['data_peserta'] = $personalModel->where('user_id', user()->id)->first();
         return view('user/profile', $data);
+    }
+
+    public function editProfil()
+    {
+        $usermodel = new UserModel();
+        $id = $this->request->getPost('id');
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'fullname' => $this->request->getPost('fullname'),
+            'email' => $this->request->getPost('email'),
+        ];
+
+        $hasil = $usermodel
+            ->where('id', $id)
+            ->set([
+                'email' => $this->request->getPost('email'),
+                'username' => $this->request->getPost('username'),
+                'fullname' => $this->request->getPost('fullname'),
+            ])
+            ->update();
+
+        var_dump($hasil);
+        die;
     }
 }

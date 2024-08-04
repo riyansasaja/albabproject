@@ -91,7 +91,7 @@
                                     </form>
                                     <?php if ($config->activeResetter) : ?>
                                         <div class="text-center">
-                                            <a class="small" href="<?= url_to('register') ?>">Forgot Password?</a>
+                                            <a class="small" href="<?= url_to('forgot') ?>">Forgot Password?</a>
                                         </div>
                                     <?php endif; ?>
                                     <?php if ($config->allowRegistration) : ?>

@@ -26,7 +26,7 @@
         <div class="card shadow">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Detil Peserta</h6>
-                <a href="" class="btn btn-info" id="printpeserta"> <i class="fas fa-solid fa-print"></i> Edit Data</a>
+                <a href="" class="btn btn-info" id="printpeserta" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-solid fa-user-edit"></i> Edit Data</a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -158,7 +158,50 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Detil Peserta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                $hidden = ['id' => user()->id];
+                echo form_open('profile/editprofil', '', $hidden);
+                ?>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="username" value="<?= user()->username ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Jelas</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="fullname" value="<?= user()->fullname ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" name="email" value="<?= user()->email ?>">
+                    </div>
+                </div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+            <?= form_close() ?>
+        </div>
+    </div>
+</div>
 
 
 

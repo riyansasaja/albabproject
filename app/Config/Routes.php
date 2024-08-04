@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index', ['filter' => 'role:user, administrator']);
 $routes->get('/formdata', 'Home::formData', ['filter' => 'role:user, administrator']);
 $routes->get('/profile', 'Home::viewProfile', ['filter' => 'role:user, administrator']);
+$routes->post('/profile/editprofil', 'Home::editProfil', ['filter' => 'role:user']);
 
 $routes->post('/formdata', 'Home::formData', ['filter' => 'role:user']);
 $routes->post('/uploadcicil', 'Home::uploadCicil', ['filter' => 'role:user']);
