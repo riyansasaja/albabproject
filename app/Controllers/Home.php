@@ -239,4 +239,70 @@ class Home extends BaseController
 
         return json_encode($hasil);
     }
+
+
+    //tampilan edit form data
+    public function evFormData()
+    {
+        $modelformdata = new PersonalData();
+        $dp['personal_data'] = $modelformdata->where('user_id', user()->id)->first();
+
+
+        if (!$this->request->is('post')) {
+            return view('user/formdataedit', $dp);
+        }
+
+        $rules = [
+            // @TODO
+            'jenis_kelamin' => 'required|in_list[Laki-laki, Perempuan]',
+            'asal_sekolah' => 'required',
+            'cita_cita' => 'required',
+            'motivasi' => 'required',
+            'ukuran_baju' => 'required',
+            'nomor_telpon' => 'required',
+            'nomor_telpon_ortu' => 'required',
+            'pengalaman' => 'required',
+            'aktivitas' => 'required|not_in_list[Pilih]',
+            'opbdh' => 'required',
+            'nm' => 'required',
+            'bi' => 'required',
+            'smpad' => 'required',
+            'stmdka' => 'required',
+            'apypbdha' => 'required',
+            'kytt' => 'required',
+            'amtad' => 'required',
+        ];
+
+        $data = $this->request->getPost([
+            'jenis_kelamin',
+            'asal_sekolah',
+            'cita_cita',
+            'motivasi',
+            'ukuran_baju',
+            'nomor_telpon',
+            'nomor_telpon_ortu',
+            'pengalaman',
+            'aktivitas',
+            'opbdh',
+            'nm',
+            'bi',
+            'smpad',
+            'stmdka',
+            'apypbdha',
+            'kytt',
+            'amtad'
+        ]);
+
+        if (!$this->validateData($data, $rules)) {
+            var_dump($data);
+            die;
+            return view('user/formdataedit', $dp);
+        }
+
+        $validData = $this->validator->getValidated();
+        $id = $this->request->getVar('id');
+        $modelformdata->update($id, $validData);
+        session()->setFlashdata('success', 'Data Berhasil diupdate, Terimakasih !');
+        return redirect()->to('/profile');
+    }
 }

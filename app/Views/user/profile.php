@@ -33,9 +33,9 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col text-center">
-                            <picture>
-                                <img src="<?= (user()->pict == null) ? base_url('assets/img/undraw_profile.svg') : base_url('profile_pictures/' . user()->pict); ?>" class="rounded-circle shadow-4-strong image-fluid img-thumbnail" alt="" width="30%">
-                            </picture>
+                            <div sclass="overflow-hidden bg-primary">
+                                <img src="<?= (user()->pict == null) ? base_url('assets/img/undraw_profile.svg') : base_url('profile_pictures/' . user()->pict); ?>" class="rounded-circle shadow-4-strong" alt="" width="200em" height="200em">
+                            </div>
 
                         </div>
                     </div>
@@ -73,7 +73,7 @@
             <div class="card shadow">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Detil Peserta</h6>
-                    <a href="" class="btn btn-info" id="printpeserta"> <i class="fas fa-solid fa-print"></i> Edit Data</a>
+                    <a href="<?= base_url('editformdata') ?>" class="btn btn-info" id="printpeserta"> <i class="fas fa-solid fa-print"></i> Edit Data</a>
                 </div>
                 <div class="card-body">
 
