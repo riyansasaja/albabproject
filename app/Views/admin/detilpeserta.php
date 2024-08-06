@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 <?php
-var_dump($data_peserta);
+// var_dump($data_peserta);
 ?>
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Daftar Detil Peserta</h1>
@@ -18,7 +18,7 @@ var_dump($data_peserta);
                 <div class="row">
                     <div class="col-6">
                         <picture>
-                            <img src="<?= base_url('assets/img/undraw_profile.svg') ?>" class="img-fluid rounded mb-2" alt="" width="40%">
+                            <img src="<?= ($data_peserta['pict'] == null) ? base_url('assets/img/undraw_profile.svg') : base_url('profile_pictures/' . $data_peserta['pict']) ?>" class="img-fluid rounded-circle mb-2" alt="" width="40%">
                         </picture>
                     </div>
                 </div>

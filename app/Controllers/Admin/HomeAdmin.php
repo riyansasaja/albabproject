@@ -60,7 +60,7 @@ class HomeAdmin extends BaseController
         $personalModel = new PersonalData();
         $data['menu'] = $this->menu;
         $data['title'] = "Daftar Peserta";
-        $data['data_peserta'] = $personalModel->where('user_id', $id)->first();
+        $data['data_peserta'] = $personalModel->where('user_id', $id)->join('users', 'personal_data.user_id = users.id')->first();
         $data['bayarbyid'] = $bayarModel->where('user_id', $id)->findAll();
         return view('admin/detilpeserta', $data);
     }
