@@ -190,24 +190,40 @@ class Home extends BaseController
 
     public function editProfil()
     {
-        $usermodel = new UserModel();
-        $id = $this->request->getPost('id');
-        $data = [
-            'username' => $this->request->getPost('username'),
-            'fullname' => $this->request->getPost('fullname'),
-            'email' => $this->request->getPost('email'),
-        ];
+        // $usermodel = new UserModel();
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users');
 
-        $hasil = $usermodel
-            ->where('id', $id)
-            ->set([
-                'email' => $this->request->getPost('email'),
-                'username' => $this->request->getPost('username'),
-                'fullname' => $this->request->getPost('fullname'),
-            ])
-            ->update();
+        $id = $this->request->getVar('id');
+        $img = $this->request->getFile('picture');
 
-        var_dump($hasil);
-        die;
+        if ($img->getName() == null) {
+            # data tanpa foto
+            $data = [
+                'email' => $this->request->getVar('email'),
+                'username' => $this->request->getVar('username'),
+                'fullname' => $this->request->getVar('fullname'),
+            ];
+        } else {
+            #data dengan foto;
+            $newName = 'profile_' . time() . '.' . $img->getClientExtension();
+            $img->move('profile_pictures/', $newName);
+            if ($img->hasMoved()) {
+                # setelah gambar dipindahkan ke profile
+                $data = [
+                    'email' => $this->request->getVar('email'),
+                    'username' => $this->request->getVar('username'),
+                    'fullname' => $this->request->getVar('fullname'),
+                    'pict' => $newName,
+                ];
+            } else {
+                # gambar tidak berhasil dipindahkan
+                echo "gambar gagal di upload";
+            }
+        }
+
+        $builder->where('id', $id);
+        $hasil = $builder->update($data);
+        return json_encode($hasil);
     }
 }
