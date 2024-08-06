@@ -218,12 +218,25 @@ class Home extends BaseController
                 ];
             } else {
                 # gambar tidak berhasil dipindahkan
-                echo "gambar gagal di upload";
+                session()->setFlashdata('error', 'Gambar Tidak Berhasil diupload!');
+                return redirect()->to('/profile');
             }
         }
 
         $builder->where('id', $id);
         $hasil = $builder->update($data);
+
+        //cek $hasil true or not
+        if ($hasil) {
+            # database terupdate
+            session()->setFlashdata('success', 'Data Berhasil diupdate!');
+            return redirect()->to('/profile');
+        } else {
+            # database gagal terupdate
+            session()->setFlashdata('error', 'Data Tidak Berhasil di Update!');
+            return redirect()->to('/profile');
+        }
+
         return json_encode($hasil);
     }
 }

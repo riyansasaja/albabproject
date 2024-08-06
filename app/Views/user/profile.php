@@ -34,7 +34,7 @@
                     <div class="row mb-3">
                         <div class="col text-center">
                             <picture>
-                                <img src="<?= (user()->pict == null) ? base_url('assets/img/undraw_profile.svg') : base_url('profile_pictures/' . user()->pict); ?>" class="rounded-circle shadow-4-strong mb-2" alt="" width="30%">
+                                <img src="<?= (user()->pict == null) ? base_url('assets/img/undraw_profile.svg') : base_url('profile_pictures/' . user()->pict); ?>" class="rounded-circle shadow-4-strong image-fluid img-thumbnail" alt="" width="30%">
                             </picture>
 
                         </div>
@@ -197,7 +197,7 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Foto Profil</label>
                         <div class="col-sm-9">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture">
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture" accept="image/*">
                         </div>
                     </div>
 
@@ -212,9 +212,11 @@
     </div>
 </div>
 
+<?= $this->endSection(); ?>
 
+<?= $this->section('script'); ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="<?= base_url('assets/js/homeview.js') ?>"></script>
+<script src="<?= base_url('assets/js/profileview.js') ?>"></script>
 <?= $this->endSection(); ?>
