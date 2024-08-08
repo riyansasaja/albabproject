@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\BayarsModel;
 use App\Models\PersonalData;
 use Myth\Auth\Models\UserModel;
+use Picqer\Barcode\BarcodeGeneratorHTML;
 
 class Home extends BaseController
 {
@@ -304,5 +305,12 @@ class Home extends BaseController
         $modelformdata->update($id, $validData);
         session()->setFlashdata('success', 'Data Berhasil diupdate, Terimakasih !');
         return redirect()->to('/profile');
+    }
+
+    public function tiketDownload()
+    {
+        $generator = new BarcodeGeneratorHTML();
+        echo $generator->getBarcode('2024.XIV.' . user()->id, $generator::TYPE_CODE_128);
+        echo '2024.XIV.' . user()->id;
     }
 }

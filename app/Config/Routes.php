@@ -16,9 +16,9 @@ $routes->post('/profile/editprofil', 'Home::editProfil', ['filter' => 'role:user
 $routes->get('/editformdata', 'Home::evFormData', ['filter' => 'role:user']);
 $routes->post('/editformdata', 'Home::evFormData', ['filter' => 'role:user']);
 
+$routes->get('/tiket', 'Home::tiketDownload', ['filter' => 'role:user']);
+
 // $routes->post('/editformdata', 'Home::editformData', ['filter' => 'role:user']);
-
-
 $routes->post('/uploadcicil', 'Home::uploadCicil', ['filter' => 'role:user']);
 $routes->post('/cicilbyid', 'Home::cicilId', ['filter' => 'role:user']);
 
