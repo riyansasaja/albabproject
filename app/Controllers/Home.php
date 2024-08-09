@@ -4,8 +4,11 @@ namespace App\Controllers;
 
 use App\Models\BayarsModel;
 use App\Models\PersonalData;
+use FPDF;
 use Myth\Auth\Models\UserModel;
 use Picqer\Barcode\BarcodeGeneratorHTML;
+use Picqer\Barcode\BarcodeGeneratorPNG;
+use Svg\Tag\Path;
 
 class Home extends BaseController
 {
@@ -309,8 +312,49 @@ class Home extends BaseController
 
     public function tiketDownload()
     {
-        $generator = new BarcodeGeneratorHTML();
-        echo $generator->getBarcode('2024.XIV.' . user()->id, $generator::TYPE_CODE_128);
-        echo '2024.XIV.' . user()->id;
+
+        //buat validasi
+        //inisiasi bayar model
+        $bayarmodel = new BayarsModel();
+        $total_bayar = $bayarmodel->total_bayar(user()->id);
+
+        //buat pengecualian
+        if ($total_bayar[0]['jmlh_bayar'] == 500000) {
+            # panggil download tiket
+            $this->downloadTiket();
+        } else {
+            # Kembalikan ke home
+            return redirect()->to('/');
+        }
+    }
+
+
+    private function downloadTiket()
+    {
+
+        //buat generator barcode
+        $generator = new BarcodeGeneratorPNG();
+        //folder dan nama file untuk menyimpan file gambar barcode
+        $filebarcode = './barcode/barcode_' . user()->id . ".png";
+        //Create barcode berdasarkan id
+        file_put_contents($filebarcode, $generator->getBarcode('2024.XIV.' . user()->id, $generator::TYPE_CODE_128, 3, 50));
+
+        //inisiasi FPDF
+        $pdf = new FPDF();
+        $pdf->AddPage('P', 'A4', -90);
+        $pdf->SetFont('Arial', 'B', 16);
+        //Image Tiket-fix
+        $pdf->Cell(190, 240, $pdf->Image('tiket-fix.jpg', 65, 19, 78), 0, 1, 'C');
+        //image barcode
+        $pdf->Cell(190, 10, $pdf->Image($filebarcode, 65, 249, 78), 0, 1, "C");
+        //tulisan di bawah barcode
+        $pdf->SetFont('Helvetica', 'B', 35);
+        $pdf->SetTextColor(192, 32, 159, 255);
+        $pdf->Cell(190, 16, '2024.XIV.' . user()->id, 0, 1, "C");
+
+        //header, untuk tampilan pdf -- wajib
+        $this->response->setHeader('Content-Type', 'application/pdf');
+        // $pdf->Output(); --- output 'D' u/download dengan nama tiket.pdf
+        $pdf->Output('D', 'tiket.pdf');
     }
 }
