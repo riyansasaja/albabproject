@@ -1,5 +1,9 @@
 <?= $this->extend('admin/layoutAdmin'); ?>
 
+<?= $this->section('header'); ?>
+<link href="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 
 <!-- Page Heading -->
@@ -7,7 +11,7 @@
 
 <div class="row">
     <div class="col">
-        <table class="table">
+        <table class="table table-bordered" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -35,4 +39,10 @@
     </div>
 </div>
 
+<?= $this->endSection(); ?>
+
+<?= $this->section('footer'); ?>
+<script src="<?= base_url('assets/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/') ?>js/demo/datatables-demo.js"></script>
 <?= $this->endSection(); ?>
