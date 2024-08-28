@@ -17,6 +17,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script>
 
 </head>
 
@@ -38,7 +39,10 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1>Albab</h1>
-                                        <p class="text-gray-600 mb-4 font-italic">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum similique sequi officiis, saepe nulla nemo quibusdam itaque dolor illo natus explicabo nobis incidunt aliquam culpa eligendi, accusantium officia obcaecati porro!</p>
+                                        <!-- <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-date="2024-08-30 14:20">Countdown Timer</a> -->
+                                        <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-date="2024-12-27 08:00">Coming Soon</a>
+
+                                        <hr class="mb-3">
 
                                         <h1 class="h4 text-gray-900 mb-4">Silahkan Login !</h1>
 
