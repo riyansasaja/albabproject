@@ -1,6 +1,7 @@
 <?= $this->extend('admin/layoutAdmin'); ?>
 
 <?= $this->section('header'); ?>
+<link href="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <script>
     let message = <?= json_encode(session()->getFlashdata('message')) ?>;
     let error = <?= json_encode(session()->getFlashdata('error')) ?>;
@@ -15,7 +16,7 @@
 
 <div class="row">
     <div class="col">
-        <table class="table">
+        <table class="table table-bordered" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -68,4 +69,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<?= base_url('assets/js/validasi_bayar.js') ?>"></script>
+<script src="<?= base_url('assets/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/') ?>js/demo/datatables-demo.js"></script>
 <?= $this->endSection(); ?>
