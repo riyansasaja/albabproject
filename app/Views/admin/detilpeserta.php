@@ -7,6 +7,12 @@
 ?>
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Daftar Detil Peserta</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/peserta">Daftar Peserta</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Detil Peserta</li>
+    </ol>
+</nav>
 <div class="row">
     <div class="col-md-8">
         <div class="card shadow">
