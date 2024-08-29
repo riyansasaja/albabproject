@@ -43,4 +43,18 @@ class ArusKasModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function totaldebit()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('tb_arus_kas');
+        return $builder->selectSum('debit')->get()->getResultArray();
+    }
+    public function totalkredit()
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('tb_arus_kas');
+        return $builder->selectSum('kredit')->get()->getResultArray();
+    }
 }

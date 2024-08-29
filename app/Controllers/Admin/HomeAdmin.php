@@ -192,7 +192,11 @@ class HomeAdmin extends BaseController
     {
 
         $bayarModel = new BayarsModel();
+        $aruskasmodel = new ArusKasModel();
         $personalModel = new PersonalData();
+        $data['aruskas'] = $aruskasmodel->orderBy('created_at', 'desc')->findAll();
+        $data['totaldebit'] = $aruskasmodel->totaldebit();
+        $data['totalkredit'] = $aruskasmodel->totalkredit();
         $data['menu'] = $this->menu;
         $data['title'] = "Bendahara";
         return view('admin/bendahara', $data);
