@@ -187,4 +187,14 @@ class HomeAdmin extends BaseController
         $bayarmodel->when('id', $id_bayar)->delete();
         $aruskasmodel->insert($data_arus_kas);
     }
+
+    public function bendahara()
+    {
+
+        $bayarModel = new BayarsModel();
+        $personalModel = new PersonalData();
+        $data['menu'] = $this->menu;
+        $data['title'] = "Bendahara";
+        return view('admin/bendahara', $data);
+    }
 }

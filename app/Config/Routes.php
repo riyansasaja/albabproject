@@ -29,3 +29,5 @@ $routes->get('admin/validasi', 'Admin\HomeAdmin::validations', ['filter' => 'rol
 $routes->get('admin/validasi/(:num)', 'Admin\HomeAdmin::validationbyId/$1', ['filter' => 'role:administrator', 'operator', 'bendahara']);
 $routes->post('admin/validated', 'Admin\HomeAdmin::validated', ['filter' => 'role:administrator', 'operator', 'bendahara']);
 $routes->post('admin/addDiscount', 'Admin\HomeAdmin::addDiscount', ['filter' => 'role:administrator']);
+
+$routes->get('admin/bendahara', 'Admin\HomeAdmin::bendahara', ['filter' => 'role:administrator', 'operator', 'bendahara']);
