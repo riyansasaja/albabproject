@@ -201,4 +201,52 @@ class HomeAdmin extends BaseController
         $data['title'] = "Bendahara";
         return view('admin/bendahara', $data);
     }
+
+    public function addDebit()
+    {
+        //inisiasi modal arus kas
+        $aruskas = new ArusKasModel();
+        //tangkap inputan
+        $debitwithtitik = $this->request->getPost('debit');
+        $debit = preg_replace("/[^0-9]/", "", $debitwithtitik);
+        $tanggal = $this->request->getPost('tgl');
+        $uraian = $this->request->getPost('uraian');
+
+
+        $data = [
+            'tgl' => $tanggal,
+            'uraian' => $uraian,
+            'debit' => $debit,
+            'kredit' => 0
+        ];
+        $aruskas->insert($data);
+
+        session()->setFlashdata('success', 'Data Pemasukan berhasil disimpan');
+        return redirect()->to('admin/bendahara');
+    }
+
+
+    public function addKredit()
+    {
+        //inisiasi modal arus kas
+        $aruskas = new ArusKasModel();
+        //tangkap inputan
+        $string = $this->request->getPost('kredit');
+        $kredit = preg_replace("/[^0-9]/", "", $string);
+        $tanggal = $this->request->getPost('tgl');
+        $uraian = $this->request->getPost('uraian');
+
+
+        $data = [
+            'tgl' => $tanggal,
+            'uraian' => $uraian,
+            'kredit' => 0,
+            'kredit' => $kredit
+        ];
+
+        $aruskas->insert($data);
+
+        session()->setFlashdata('message', 'Data Pengeluaran berhasil disimpan');
+        return redirect()->to('admin/bendahara');
+    }
 }
