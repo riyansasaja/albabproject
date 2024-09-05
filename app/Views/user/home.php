@@ -29,10 +29,12 @@
                         <div class="card-body">
 
                             <div class="row">
-                                <div class="col">
+                                <div class="col text-center">
                                     <p>Assalamu'alaikum <b class="text-uppercase"><?= user()->fullname ?></b></p>
 
                                     <p>Silahkan <b>Lengkapi Data</b> dan <b>Lakukan Pembayaran</b> untuk mengikuti Kegiatan Kedepan</p>
+                                    <p>Untuk Informasi Lebih lanjut Silahkan Gabung di Group Whatsapp dengan menekan tombol di bawah ini</p>
+                                    <a target="_blank" href="https://chat.whatsapp.com/LxIJKdeT6ZFKgioSLBXB6J" class="btn btn-primary">Join WA Group</a>
                                 </div>
 
 

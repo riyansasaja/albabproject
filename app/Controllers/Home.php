@@ -12,12 +12,12 @@ use Svg\Tag\Path;
 
 class Home extends BaseController
 {
-    protected $helpers = ['form', 'number'];
+    protected $helpers = ['form', 'number', 'auth'];
 
 
     public function index()
     {
-
+        // dd(in_groups('bendahara'));
         //mengecek kalau yang masuk adalah admin
         if (!in_groups('user')) {
             # lempar ke admin
