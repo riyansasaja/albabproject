@@ -43,4 +43,54 @@ class PersonalData extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function countbyJK()
+    {
+        $db      = \Config\Database::connect();
+        $query =    "SELECT COUNT(*) AS total,
+                        SUM(jenis_kelamin = 'Laki-laki') AS males,
+                        SUM(jenis_kelamin = 'Perempuan') AS females
+                    FROM personal_data";
+
+        return $db->query($query)->getResultArray();
+
+        $builder = $db->table('personal_data');
+    }
+
+
+    public function countShirtMales()
+    {
+        $db      = \Config\Database::connect();
+        $query =    "SELECT
+                        SUM(ukuran_baju = 'S') AS S,
+                        SUM(ukuran_baju = 'M') AS M,
+                        SUM(ukuran_baju = 'L') AS L,
+                        SUM(ukuran_baju = 'XL') AS XL,
+                        SUM(ukuran_baju = 'XXL') AS XXL,
+                        SUM(ukuran_baju = 'XXXL') AS XXXL,
+                        COUNT(*) AS total
+                    FROM personal_data WHERE personal_data.jenis_kelamin = 'Laki-laki'";
+
+        return $db->query($query)->getResultArray();
+
+        $builder = $db->table('personal_data');
+    }
+
+    public function countShirtFemales()
+    {
+        $db      = \Config\Database::connect();
+        $query =    "SELECT
+                        SUM(ukuran_baju = 'S') AS S,
+                        SUM(ukuran_baju = 'M') AS M,
+                        SUM(ukuran_baju = 'L') AS L,
+                        SUM(ukuran_baju = 'XL') AS XL,
+                        SUM(ukuran_baju = 'XXL') AS XXL,
+                        SUM(ukuran_baju = 'XXXL') AS XXXL,
+                        COUNT(*) AS total
+                    FROM personal_data WHERE personal_data.jenis_kelamin = 'Perempuan'";
+
+        return $db->query($query)->getResultArray();
+
+        $builder = $db->table('personal_data');
+    }
 }

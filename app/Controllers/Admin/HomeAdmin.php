@@ -37,9 +37,16 @@ class HomeAdmin extends BaseController
 
     public function index()
     {
+        $personalModel = new PersonalData();
         $data['menu'] = $this->menu;
         $data['title'] = "Dashboard";
         //kirim view ke admin/index
+        $data['countjk'] = $personalModel->countbyJK();
+        $data['shirtmales'] = $personalModel->countShirtMales();
+        $data['shirtfemales'] = $personalModel->countShirtFemales();
+
+        // dd($data);
+
         return view('admin/index', $data);
     }
 
