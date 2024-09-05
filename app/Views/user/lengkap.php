@@ -38,6 +38,7 @@ $sisaBayar = $hargaTiket - $telahBayar;
                         <span class="text-info"><?= number_to_currency($sisaBayar, 'IDR', 'ID', 2);  ?></span>
 
                     </div>
+
                 </div>
             </div>
 
@@ -112,14 +113,16 @@ $sisaBayar = $hargaTiket - $telahBayar;
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-4">
     <div class="col">
         <?php if ($sisaBayar == 0) : ?>
             <p class="text-center mx-3">Selamat Pembayaran Sudah Lunas, silahkan Download Tiket dengan mengklik Tombol di bawah ini.</p>
-            <a href="<?= base_url('tiket/') ?>" class="btn btn-primary btn-block">Download Tiket</a>
+            <a href="<?= base_url('tiket/') ?>" class="btn btn-primary btn-block mb-3">Download Tiket</a>
+            <a href="#" class="btn btn-info btn-block">Download ID Card</a>
         <?php else : ?>
             <p class="text-center mx-3">Setelah pembayaran Lunas, tombol tiket akan muncul di bawah ini.</p>
         <?php endif; ?>
+
     </div>
 </div>
 

@@ -341,7 +341,7 @@ class Home extends BaseController
 
         //inisiasi FPDF
         $pdf = new FPDF();
-        $pdf->AddPage('P', 'A4', -90);
+        $pdf->AddPage('P', 'A4');
         $pdf->SetFont('Arial', 'B', 16);
         //Image Tiket-fix
         $pdf->Cell(190, 240, $pdf->Image('tiket-fix.jpg', 65, 19, 78), 0, 1, 'C');
