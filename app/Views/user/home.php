@@ -14,7 +14,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h4 class="mb-0 text-gray-800 mx-auto">Selamat Datang di Albab Project </h1>
+        <h4 class="mb-0 text-gray-800 mx-auto">FORMULIR PENDAFTARAN PESERTA ALBAB 1 BATCH XIV-2024 </h1>
     </div>
 
     <!-- content Row -->

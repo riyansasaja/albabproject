@@ -29,7 +29,7 @@
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                Section #1
+                                                Formulir A
                                             </button>
                                         </h2>
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="card-header" id="headingTwo">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Section #2
+                                                Formulir B
                                             </button>
                                         </h2>
                                     </div>
@@ -175,7 +175,7 @@
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
                                             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Section #3
+                                                Formulir C
                                             </button>
                                         </h2>
                                     </div>
