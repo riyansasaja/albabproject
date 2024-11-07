@@ -36,6 +36,7 @@ class UsersManagement extends BaseController
         $userModel = new UserModel();
         //ambil data dari user model
         $data['users'] = $userModel->select('email, fullname, active,')->findAll();
+        $data['usersactive'] = $userModel->where('active', 1)->countAllResults();
         $data['menu'] = $this->menu;
         $data['title'] = "Dashboard";
         //tampilkan data di view admin

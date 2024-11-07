@@ -6,6 +6,12 @@
 
 <?= $this->section('content'); ?>
 
+<?php
+// dd($users); 
+?>
+
+
+
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Users Management</h1>
 <!-- breadcrumb -->
@@ -19,7 +25,7 @@
     <div class="col-md-4 col-sm-6">
         <div class="card border-left-success">
             <div class="card-body">
-                Total Users <br>10
+                Total Users <br> <?= count($users); ?>
             </div>
         </div>
     </div>
@@ -27,7 +33,7 @@
     <div class="col-md-4 col-sm-6">
         <div class="card border-left-warning">
             <div class="card-body">
-                Active Users <br>100%
+                Active Users <br> <?= $usersactive; ?>
             </div>
         </div>
     </div>
