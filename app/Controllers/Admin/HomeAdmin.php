@@ -153,6 +153,12 @@ class HomeAdmin extends BaseController
         return redirect()->to('admin/validasi');
     }
 
+
+    public function tes()
+    {
+        echo "uji coba";
+    }
+
     public function addDiscount()
     {
         $bayarmodel = new BayarsModel();
@@ -172,12 +178,10 @@ class HomeAdmin extends BaseController
             'debit' => $this->request->getPost('jmlh_bayar')
         ];
 
-        // var_dump($data_arus_kas);
-        // die;
-
         $bayarmodel->insert($data_bayar);
         $aruskasmodel->insert($data_arus_kas);
-        return redirect()->to('/admin/peserta');
+        session()->setFlashdata('success', 'Data Discount sudah ditambahkan');
+        return redirect()->to('/admin/peserta/' . $data_bayar['user_id']);
     }
 
     public function deleteDiscount()

@@ -5,7 +5,7 @@
 <script>
     let message = <?= json_encode(session()->getFlashdata('message')) ?>;
     let error = <?= json_encode(session()->getFlashdata('error')) ?>;
-    let success = <?= json_encode(session()->getFlashdata('success')) ?>
+    let success = <?= json_encode(session()->getFlashdata('success')) ?>;
 </script>
 <?= $this->endSection(); ?>
 

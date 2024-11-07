@@ -169,13 +169,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php
-                $hidden = [
-                    'user_id' => $data_peserta['user_id'],
-                    'fullname' => $data_peserta['fullname']
-                ];
-                echo form_open('admin/addDiscount', '', $hidden);
-                ?>
+                <?= form_open('admin/addDiscount'); ?>
+                <?= form_hidden('user_id', $data_peserta['user_id']); ?>
+                <?= form_hidden('fullname', $data_peserta['fullname']); ?>
+
                 <div class="form-group">
                     <label for="jumlah">Jumlah Diskon</label>
                     <div class="input-group mb-3">
