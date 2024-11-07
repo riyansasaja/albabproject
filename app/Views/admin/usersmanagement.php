@@ -21,11 +21,11 @@
         <li class="breadcrumb-item active" aria-current="page">Users Meneg</li>
     </ol>
 </nav>
-<div class="row">
+<div class="row mb-2">
     <div class="col-md-4 col-sm-6">
         <div class="card border-left-success">
             <div class="card-body">
-                Total Users <br> <?= count($users); ?>
+                <b>Total Users</b> <br> <?= count($users); ?>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div class="col-md-4 col-sm-6">
         <div class="card border-left-warning">
             <div class="card-body">
-                Active Users <br> <?= $usersactive; ?>
+                <b>Active Users </b><br> <?= number_format(($usersactive / count($users)) * 100, 2, ',', '') ?> %
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Username</th>
+                                <th>Nama</th>
                                 <th>Email</th>
                                 <th>Status</th>
                             </tr>
@@ -59,7 +59,7 @@
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Username</th>
+                                <th>Nama</th>
                                 <th>Email</th>
                                 <th>Status</th>
                             </tr>
