@@ -39,3 +39,5 @@ $routes->get('admin/usersetting', 'Admin\UsersManagement::index', ['filter' => '
 $routes->get('admin/usersetting/(:any)', 'Admin\UsersManagement::userDetil/$1', ['filter' => 'role:administrator']);
 $routes->post('admin/edituser', 'Admin\UsersManagement::editUser', ['filter' => 'role:administrator']);
 $routes->post('admin/updatepp', 'Admin\UsersManagement::updatePP', ['filter' => 'role:administrator']);
+$routes->post('admin/addroles', 'Admin\UsersManagement::addRoles', ['filter' => 'role:administrator']);
+$routes->get('admin/delrole/(:num)/(:num)', 'Admin\UsersManagement::delRole/$1/$2', ['filter' => 'role:administrator']);

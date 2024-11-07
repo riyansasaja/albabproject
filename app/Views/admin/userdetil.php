@@ -46,7 +46,7 @@
                     <hr>
 
                     <div class="form-group row">
-                        <label for="userphoto" class="col-sm-3 col-form-label">Your Photo</label>
+                        <label for="userphoto" class="col-sm-3 col-form-label">User Photo</label>
                         <div class="col-sm-8 col-form-label">
                             <img src="<?= base_url('profile_pictures/') . $user->pict ?>" class="img-fluid rounded-circle img-thumbnail" width="100" height="100">
                             <span class="ml-2 badge badge-dark" data-toggle="modal" data-target="#photoupdateModal">Update</span>
@@ -72,14 +72,16 @@
                         <label for="role" class="col-sm-3 col-form-label">Role</label>
                         <div class="col-sm-8 col-form-label">
                             <?php foreach ($getRoles as $role): ?>
-                                <p> <?= $role['name']; ?> <span class="ml-2 badge badge-dark">Hapus</span> </p>
-                            <?php endforeach; ?>
+                                <p> <?= $role['name']; ?> <a href="<?= base_url('admin/delrole/') . $user->id . '/' . $role['group_id'] ?>">
+                                        <span class="badge badge-danger badge-pill">-</span>
+                                    </a>
+                                <?php endforeach; ?>
                         </div>
                     </div>
                     <hr>
                     <button name="update" type="submit" class="btn btn-primary">Update</button>
                     <button type="button" class="btn btn-warning">Reset Password</button>
-                    <button type="button" class="btn btn-info">Add Role</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#roleModal">Add Role</button>
                     <?= form_close(); ?>
                 </div>
             </div>
@@ -114,6 +116,36 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
 
+            <?= form_close(); ?>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Add Role -->
+<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= form_open('admin/addroles'); ?>
+                <?= form_hidden('user_id', $user->id); ?>
+                <select class="form-control" name="group_id">
+                    <option value="" selected>Default select</option>
+                    <?php foreach ($allRoles as $key => $r) : ?>
+                        <option value="<?= $r->id ?>"><?= $r->name; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="Submit" class="btn btn-primary">Save changes</button>
+            </div>
             <?= form_close(); ?>
         </div>
     </div>

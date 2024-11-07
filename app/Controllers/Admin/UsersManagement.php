@@ -57,9 +57,9 @@ class UsersManagement extends BaseController
         $idUser = $data['user']->toArray()['id'];
         //cek role getGroupsForUser($userid)
         $data['getRoles'] = $modelGroup->getGroupsForUser($idUser);
+        //ambil allroles
+        $data['allRoles'] = $authorize->groups();
         //Kirim data detil User dan Group
-
-
         $data['menu'] = $this->menu;
         $data['title'] = "User Management";
         return view('admin/userdetil', $data);
@@ -128,5 +128,36 @@ class UsersManagement extends BaseController
             session()->setFlashdata('error', 'Data gagal di Update');
             return redirect()->back();
         }
+    }
+
+    public function addRoles()
+    {
+        $modelGroup = new ModelsGroupModel();
+        $rules = [
+            'user_id' => 'required',
+            'group_id' => 'required'
+        ];
+
+        // cek validasi
+        if (! $this->validate($rules)) {
+            # Kembalikan swal
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->back()->withInput();
+        }
+
+        //jika lolos ambil data inputan
+        $data = $this->validator->getValidated();
+        //set group di myth auth
+        $modelGroup->addUserToGroup($data['user_id'], $data['group_id']);
+        session()->setFlashdata('success', 'Data berhasil ditambahkan');
+        return redirect()->back();
+    }
+
+    public function delRole($user_id, $group_id)
+    {
+        $modelGroup = new ModelsGroupModel();
+        $modelGroup->removeUserFromGroup($user_id, $group_id);
+        session()->setFlashdata('success', 'Data berhasil dihapus');
+        return redirect()->back();
     }
 }
