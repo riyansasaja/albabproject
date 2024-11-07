@@ -36,3 +36,6 @@ $routes->post('admin/addkredit', 'Admin\HomeAdmin::addKredit', ['filter' => 'rol
 
 //usermanagement
 $routes->get('admin/usersetting', 'Admin\UsersManagement::index', ['filter' => 'role:administrator']);
+$routes->get('admin/usersetting/(:any)', 'Admin\UsersManagement::userDetil/$1', ['filter' => 'role:administrator']);
+$routes->post('admin/edituser', 'Admin\UsersManagement::editUser', ['filter' => 'role:administrator']);
+$routes->post('admin/updatepp', 'Admin\UsersManagement::updatePP', ['filter' => 'role:administrator']);
