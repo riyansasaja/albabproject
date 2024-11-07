@@ -204,6 +204,9 @@ $builder = $db->table('tb_menu');
         let success = <?= json_encode(session()->getFlashdata('success')) ?>;
     </script>
 
+    <!-- swal -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- start footer -->
     <?= $this->renderSection('footer'); ?>
 

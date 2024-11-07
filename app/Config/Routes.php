@@ -23,6 +23,7 @@ $routes->post('/cicilbyid', 'Home::cicilId', ['filter' => 'role:user']);
 
 $routes->get('admin', 'Admin\HomeAdmin::index', ['filter' => 'role:administrator,operator,bendahara']);
 $routes->get('admin/peserta', 'Admin\HomeAdmin::daftarPeserta', ['filter' => 'role:administrator']);
+$routes->post('admin/peserta/delete', 'Admin\HomeAdmin::deletePeserta', ['filter' => 'role:administrator']);
 $routes->get('admin/peserta/(:num)', 'Admin\HomeAdmin::pesertabyID/$1', ['filter' => 'role:administrator']);
 $routes->get('admin/validasi', 'Admin\HomeAdmin::validations', ['filter' => 'role:administrator,bendahara']);
 $routes->get('admin/validasi/(:num)', 'Admin\HomeAdmin::validationbyId/$1', ['filter' => 'role:administrator,bendahara']);

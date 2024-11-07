@@ -7,7 +7,9 @@ use App\Models\ArusKasModel;
 use App\Models\BayarsModel;
 use App\Models\MenuModel;
 use App\Models\PersonalData;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use Myth\Auth\Models\UserModel as ModelsUserModel;
 use PhpParser\Node\Stmt\Echo_;
 
 class HomeAdmin extends BaseController
@@ -60,6 +62,29 @@ class HomeAdmin extends BaseController
         $data['title'] = "Daftar Peserta";
         return view('admin/peserta', $data);
     }
+
+    public function deletePeserta()
+    {
+        $usermodel = new UserModel();
+        $personalModel = new PersonalData();
+        //ambil data id
+        $id = $this->request->getVar('id');
+        //delete byid
+        $deleteuser = $usermodel->delete($id);
+        $deletePersonalData = $personalModel->where('user_id', $id)->delete();
+        //kembalikan dengan session
+        if ($deleteuser && $deletePersonalData) {
+            # code...
+            session()->setFlashdata('success', 'Data Peserta Berhasil dihapus');
+            return redirect()->to('/admin/peserta/');
+        } else {
+            # code...
+            session()->setFlashdata('error', 'Data Peserta Gagal dihapus');
+            return redirect()->to('/admin/peserta/');
+        }
+    }
+
+
 
     public function pesertabyID($id)
     {
