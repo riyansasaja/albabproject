@@ -7,6 +7,7 @@ use App\Models\MenuModel;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Myth\Auth\Models\GroupModel as ModelsGroupModel;
+use Myth\Auth\Password;
 
 class UsersManagement extends BaseController
 {
@@ -102,6 +103,22 @@ class UsersManagement extends BaseController
             }
 
             die;
+        }
+
+        if (isset($_POST['reset_password'])) {
+            # tentukan password default
+            $password = 'Albab@12345';
+            //ambil data
+            $data = [
+                'password_hash' => Password::hash($password), //dari controller password mythauth
+                'reset_hash' => null,
+                'reset_at' => null,
+                'reset_expires' => null,
+            ];
+
+            $this->userModel->update($id, $data); //update data
+            session()->setFlashdata('success', "Password berhasil di reset ke - Albab@12345 -"); //swal
+            return redirect()->back();
         }
     }
 

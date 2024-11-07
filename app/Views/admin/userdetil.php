@@ -80,7 +80,7 @@
                     </div>
                     <hr>
                     <button name="update" type="submit" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-warning">Reset Password</button>
+                    <button name="reset_password" type="submit" class="btn btn-warning">Reset Password</button>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#roleModal">Add Role</button>
                     <?= form_close(); ?>
                 </div>
