@@ -33,3 +33,6 @@ $routes->post('admin/addDiscount', 'Admin\HomeAdmin::addDiscount', ['filter' => 
 $routes->get('admin/bendahara', 'Admin\HomeAdmin::bendahara', ['filter' => 'role:administrator,operator,bendahara']);
 $routes->post('admin/adddebit', 'Admin\HomeAdmin::addDebit', ['filter' => 'role:administrator,operator,bendahara']);
 $routes->post('admin/addkredit', 'Admin\HomeAdmin::addKredit', ['filter' => 'role:administrator,operator,bendahara']);
+
+//usermanagement
+$routes->get('admin/usersetting', 'Admin\UsersManagement::index', ['filter' => 'role:administrator']);
