@@ -235,6 +235,9 @@ class HomeAdmin extends BaseController
         $data['totalkredit'] = $aruskasmodel->totalkredit();
         $data['menu'] = $this->menu;
         $data['title'] = "Bendahara";
+
+
+
         return view('admin/bendahara', $data);
     }
 

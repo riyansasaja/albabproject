@@ -49,12 +49,12 @@ class ArusKasModel extends Model
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('tb_arus_kas');
-        return $builder->selectSum('debit')->get()->getResultArray();
+        return $builder->selectSum('debit')->get()->getFirstRow();
     }
     public function totalkredit()
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('tb_arus_kas');
-        return $builder->selectSum('kredit')->get()->getResultArray();
+        return $builder->selectSum('kredit')->get()->getFirstRow();
     }
 }

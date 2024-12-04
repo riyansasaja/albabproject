@@ -12,6 +12,13 @@
 <?= $this->section('content'); ?>
 
 
+<?php
+// dd($totaldebit->debit);
+$debit = $totaldebit->debit;
+$kredit = $totalkredit->kredit;
+
+?>
+
 
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Catatan Bendahara</h1>
@@ -26,7 +33,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Total Pemasukan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_to_currency($totaldebit[0]['debit'], 'IDR', 'id') ?></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= ($debit == null) ? 0 : number_to_currency($debit, 'IDR', 'id') ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -44,7 +51,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Total Pengeluaran</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= number_to_currency($totalkredit[0]['kredit'], 'IDR', 'id')  ?> </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= ($kredit == null) ? 0 :  number_to_currency($kredit, 'IDR', 'id')  ?> </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -62,7 +69,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Saldo</div>
-                        <?php $saldo = $totaldebit[0]['debit'] - $totalkredit[0]['kredit']; ?>
+                        <?php $saldo = $debit - $kredit; ?>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= number_to_currency($saldo, 'IDR', 'id')  ?> </div>
                     </div>
                     <div class="col-auto">
@@ -100,8 +107,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th colspan="2">Total</th>
-                    <th scope="col"><?= number_to_currency($totaldebit[0]['debit'], 'IDR', 'id') ?></th>
-                    <th scope="col"> <?= number_to_currency($totalkredit[0]['kredit'], 'IDR', 'id')  ?></th>
+                    <th scope="col"><?= number_to_currency($debit, 'IDR', 'id') ?></th>
+                    <th scope="col"> <?= number_to_currency($kredit, 'IDR', 'id')  ?></th>
                 </tr>
             </tfoot>
             <tbody>
