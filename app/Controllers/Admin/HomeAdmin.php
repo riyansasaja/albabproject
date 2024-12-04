@@ -11,7 +11,9 @@ use App\Models\PersonalData;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Myth\Auth\Models\UserModel as ModelsUserModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpParser\Node\Stmt\Echo_;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class HomeAdmin extends BaseController
 {
@@ -333,5 +335,80 @@ class HomeAdmin extends BaseController
         $html = view('rekkoranpdf', $data);
         // run dompdf
         $Pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    }
+
+    public function rekapExcel()
+    {
+        //inisiasi model personal data
+        $personalData = new PersonalData();
+        //ambil semua data personal data
+        $datas = $personalData->findAll();
+        //inisiasi spread sheet
+        $spreadsheet = new Spreadsheet();
+        //spreadsheet active index untuk bekeng depe kop
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'DAFTAR REKAPAN PESERTA ALBAB')
+            ->setCellValue('A2', 'PER TANGGAL' . date('d-my'));
+        //sperd sheet active index untuk bikin header table
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A4', 'NO')
+            ->setCellValue('B4', 'NAMA')
+            ->setCellValue('C4', 'EMAIL')
+            ->setCellValue('D4', 'JK')
+            ->setCellValue('E4', 'ASAL SEKOLAH')
+            ->setCellValue('F4', 'CITA-CITA')
+            ->setCellValue('G4', 'MOTIVASI')
+            ->setCellValue('H4', 'UKURAN BAJU')
+            ->setCellValue('I4', 'NOMOR TELPON')
+            ->setCellValue('J4', 'NOMOR TELPON ORTU')
+            ->setCellValue('K4', 'PENGALAMAN ORGANISASI')
+            ->setCellValue('L4', 'AKTIVITAS')
+            ->setCellValue('M4', 'OPBDH')
+            ->setCellValue('N4', 'NM')
+            ->setCellValue('O4', 'BI')
+            ->setCellValue('P4', 'SMPAD')
+            ->setCellValue('Q4', 'STMDKA')
+            ->setCellValue('R4', 'APY BDHA')
+            ->setCellValue('S4', 'KYTT')
+            ->setCellValue('T4', 'AMTAD');
+        //tentukan coloumn
+        $coloumn = 5;
+        $nomor = 1;
+        //for each data personal
+        foreach ($datas as $data) {
+            # //looping di cell dibawahnya
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $coloumn, $nomor++)
+                ->setCellValue('B' . $coloumn, $data['fullname'])
+                ->setCellValue('C' . $coloumn, $data['email'])
+                ->setCellValue('D' . $coloumn, $data['jenis_kelamin'])
+                ->setCellValue('E' . $coloumn, $data['asal_sekolah'])
+                ->setCellValue('F' . $coloumn, $data['cita_cita'])
+                ->setCellValue('G' . $coloumn, $data['motivasi'])
+                ->setCellValue('H' . $coloumn, $data['ukuran_baju'])
+                ->setCellValueExplicit('I' . $coloumn, $data['nomor_telpon'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2)
+                ->setCellValueExplicit('J' . $coloumn, $data['nomor_telpon_ortu'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2)
+                ->setCellValue('K' . $coloumn, $data['pengalaman'])
+                ->setCellValue('L' . $coloumn, $data['aktivitas'])
+                ->setCellValue('M' . $coloumn, $data['opbdh'])
+                ->setCellValue('N' . $coloumn, $data['nm'])
+                ->setCellValue('O' . $coloumn, $data['bi'])
+                ->setCellValue('P' . $coloumn, $data['smpad'])
+                ->setCellValue('Q' . $coloumn, $data['stmdka'])
+                ->setCellValue('R' . $coloumn, $data['apypbdha'])
+                ->setCellValue('S' . $coloumn, $data['kytt'])
+                ->setCellValue('T' . $coloumn, $data['amtad']);
+            $coloumn++;
+        }
+
+        //inisiasi writer
+        $writer = new Xlsx($spreadsheet);
+        $filename = date('Y-m-d-His') . '-rekapan peserta albab';
+        //inisasi header
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $filename . '.xlsx');
+        header('Cache-Control: max-age=0');
+        //save writer
+        $writer->save('php://output');
     }
 }

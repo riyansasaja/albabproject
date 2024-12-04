@@ -8,6 +8,7 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Daftar Peserta</h1>
+<a href="peserta/rekapexcel" class="btn btn-info mb-2">Download Rekap Excel</a>
 
 <div class="row">
     <div class="col">
