@@ -87,7 +87,7 @@ $kredit = $totalkredit->kredit;
         <button class="btn btn-info" data-toggle="modal" data-target="#addPenerimaan">Tambah Pemasukan</button>
         <button class="btn btn-danger" data-toggle="modal" data-target="#addPengeluaran">Tambah Pengeluaran</button>
 
-        <button class="btn btn-warning">Cetak Rek. Koran</button>
+        <button class="btn btn-warning" data-toggle="modal" data-target="#rekKoran">Cetak Rek. Koran</button>
     </div>
 </div>
 
@@ -221,6 +221,45 @@ $kredit = $totalkredit->kredit;
         </div>
     </div>
 </div>
+
+
+<!-- Modal Cetak Rek Pdf-->
+<div class="modal fade" id="rekKoran" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="staticBackdropLabel">Cetak Rekening Koran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= form_open('admin/rekkoran'); ?>
+
+                <div class="form-group row">
+                    <label for="dateStart" class="col-sm-4 col-form-label">Tanggal Awal</label>
+                    <div class="col-sm-8">
+                        <input type="date" name="dateStart" class="form-control" id="dateStart">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dateEnd" class="col-sm-4 col-form-label">Tanggal Akhir</label>
+                    <div class="col-sm-8">
+                        <input type="date" name="dateEnd" class="form-control" id="dateEnd">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Save</button>
+            </div>
+            <?= form_close(); ?>
+        </div>
+    </div>
+</div>
+
+
 
 <?= $this->endSection(); ?>
 

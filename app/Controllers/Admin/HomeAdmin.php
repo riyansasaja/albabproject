@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Libraries\Pdfgenerator;
 use App\Models\ArusKasModel;
 use App\Models\BayarsModel;
 use App\Models\MenuModel;
@@ -287,5 +288,50 @@ class HomeAdmin extends BaseController
 
         session()->setFlashdata('message', 'Data Pengeluaran berhasil disimpan');
         return redirect()->to('admin/bendahara');
+    }
+
+    public function rekKoran()
+    {
+
+        //inisiasi library pdf
+        $Pdfgenerator = new Pdfgenerator();
+        // filename dari pdf ketika didownload
+        $file_pdf = 'Rekening Koran';
+        // setting paper
+        $paper = 'A4';
+        //orientasi paper potrait / landscape
+        $orientation = "portrait";
+
+        $rules = [
+            'dateStart' => 'required|valid_date',
+            'dateEnd' => 'required|valid_date'
+        ];
+        if (!$this->validate($rules)) {
+            # code...
+            session()->setFlashdata('error', $this->validator->getErrors());
+            return redirect()->to('admin/bendahara');
+        }
+        // tangkap inputan tanggal awal dan akhir
+        $dateStart = $this->request->getVar('dateStart');
+        $dateEnd = $this->request->getVar('dateEnd');
+
+        if ($dateEnd < $dateStart) {
+            # code...
+            session()->setFlashdata('error', 'Tanggal Awal Tidak Boleh Lebih dari Tanggal Akhir');
+            return redirect()->to('admin/bendahara');
+        }
+
+        //inisiasi modal arus kas
+        $aruskasmodel = new ArusKasModel();
+        // ambil data dari tabel aruskas
+        $data['aruskas'] = $aruskasmodel->where('tgl >=', $dateStart)->where('tgl <=', $dateEnd)->findAll();
+        // d($dateStart);
+        // dd($dateEnd);
+        $data['dateStart'] = $dateStart;
+        $data['dateEnd'] = $dateEnd;
+
+        $html = view('rekkoranpdf', $data);
+        // run dompdf
+        $Pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     }
 }
