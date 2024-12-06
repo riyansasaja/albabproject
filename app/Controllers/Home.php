@@ -125,7 +125,7 @@ class Home extends BaseController
                 'rules' => [
                     'uploaded[userfile]',
                     'is_image[userfile]',
-                    'ext_in[userfile, png, jpg, jpeg, webp, pdf]',
+                    // 'ext_in[userfile, png, jpg, jpeg, webp, pdf]',
                     // 'mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp,pdf]',
                     'max_size[userfile,10485760]',
                     // 'max_dims[userfile,1024,768]',
