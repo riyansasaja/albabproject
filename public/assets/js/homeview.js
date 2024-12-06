@@ -10,8 +10,7 @@ $(document).ready(function () {
     }
 
     if (error) {
-        console.log(error.errors.bukti_bayar
-        );
+        console.log(error);
 
         Swal.fire({
         title: "Error",
