@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         Swal.fire({
         title: "Error",
-        text: error.errors.bukti_bayar,
+        text: JSON.stringify(error),
         icon: "error"
         });
     }
