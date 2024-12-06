@@ -1,6 +1,7 @@
 $(document).ready(function () {
     
     console.info(baseUrl);
+    console.info('tai');
     if (message) {
 
         Swal.fire({
