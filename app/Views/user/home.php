@@ -2,6 +2,7 @@
 
 <?= $this->section('header'); ?>
 <script>
+    let baseUrl = <?= json_encode(base_url()) ?>;
     let message = <?= json_encode(session()->getFlashdata('message')) ?>;
     let error = <?= json_encode(session()->getFlashdata('error')) ?>;
     let success = <?= json_encode(session()->getFlashdata('success')) ?>

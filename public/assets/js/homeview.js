@@ -1,5 +1,6 @@
 $(document).ready(function () {
     
+    console.info(baseUrl);
     if (message) {
 
         Swal.fire({
@@ -44,7 +45,7 @@ $(document).ready(function () {
        let dataId = $(this).data('id');
        $.ajax({
         type: "POST",
-        url: "http://localhost:8080/cicilbyid/",
+        url: `${baseUrl}cicilbyid`,
         data: {
             "id" : dataId
         },
@@ -85,9 +86,9 @@ $(document).ready(function () {
                         </tr>
                     </tbody>
                 </table>
-                <img class="img-fluid" src="http://localhost:8080/uploads/${response.bukti_bayar}" alt="">
+                <img class="img-fluid" src=  "${baseUrl}/uploads/${response.bukti_bayar}" alt="">
                 
-                
+              
                 `);
         }
        });

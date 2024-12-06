@@ -199,6 +199,7 @@ $builder = $db->table('tb_menu');
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
     <script>
+        let baseUrl = <?= json_encode(base_url()) ?>;
         let message = <?= json_encode(session()->getFlashdata('message')) ?>;
         let error = <?= json_encode(session()->getFlashdata('error')) ?>;
         let success = <?= json_encode(session()->getFlashdata('success')) ?>;
