@@ -143,7 +143,7 @@ class Home extends BaseController
         $img = $this->request->getFile('userfile');
 
         $newName = 'bukti_' . time() . '.' . $img->getClientExtension();
-        $img->move('uploads/', $newName);
+        $img->move(WRITEPATH . 'uploads/', $newName);
 
         // var_dump($newName);
         // die;
