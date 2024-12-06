@@ -116,9 +116,6 @@ class Home extends BaseController
     {
         $bayarmodel = new BayarsModel();
 
-
-
-
         $validationRule = [
             'userfile' => [
                 'label' => 'Image File',
