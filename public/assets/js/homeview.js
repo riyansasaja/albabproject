@@ -94,12 +94,4 @@ $(document).ready(function () {
     });
 
 
-    $('#uploadcicil').on('click', function () {
-        $('#uploadcicil').attr('disabled', true);
-    });
-
-
-
-
-
 });
