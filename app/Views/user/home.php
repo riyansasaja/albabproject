@@ -67,28 +67,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('/uploadcicil') ?>" method="post" enctype="multipart/form-data">
+                <?= form_open_multipart('/uploadcicil'); ?>
 
 
-                    <div class="form-group">
-                        <label for="jumlah">Jumlah Pembayaran</label>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Rp</span>
-                            </div>
-                            <input type="number" class="form-control" aria-describedby="basic-addon1" name="jmlh_bayar" id="jumlah">
+                <div class="form-group">
+                    <label for="jumlah">Jumlah Pembayaran</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Rp</span>
+                        </div>
+                        <input type="number" class="form-control" aria-describedby="basic-addon1" name="jmlh_bayar" id="jumlah">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="uploadStruk">Upload Bukti Pembayaran</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="uploadStruk" aria-describedby="inputGroupFileAddon01" name="userfile" accept="image/*">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="uploadStruk">Upload Bukti Pembayaran</label>
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="uploadStruk" aria-describedby="inputGroupFileAddon01" name="userfile" accept="image/*">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                            </div>
-                        </div>
-                    </div>
+                </div>
 
 
 
@@ -97,7 +97,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save</button>
 
-                </form>
+                <?= form_close(); ?>
             </div>
         </div>
     </div>
