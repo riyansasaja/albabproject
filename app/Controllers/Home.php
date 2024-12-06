@@ -127,7 +127,7 @@ class Home extends BaseController
                     'is_image[userfile]',
                     // 'ext_in[image/png,image/jpg,image/jpeg,pdf]',
                     'mime_in[userfile,image/jpg,image/jpeg,image/gif,image/png,image/webp,pdf]',
-                    'max_size[userfile,50000]',
+                    'max_size[userfile,10485760]',
                     // 'max_dims[userfile,1024,768]',
                 ],
             ],
