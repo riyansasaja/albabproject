@@ -24,7 +24,8 @@ $(document).ready(function () {
 
         Swal.fire({
         title: "Success",
-        text: success.uploaded_fileinfo,
+        // text: success.uploaded_fileinfo,
+        text: JSON.stringify(success),
         icon: "success"
         });
     }
