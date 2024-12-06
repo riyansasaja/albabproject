@@ -87,7 +87,7 @@ $(document).ready(function () {
                         </tr>
                     </tbody>
                 </table>
-                <img class="img-fluid" src=  "${baseUrl}/uploads/${response.bukti_bayar}" alt="">
+                <img class="img-fluid" src=  "${baseUrl}uploads/${response.bukti_bayar}" alt="">
                 
               
                 `);
