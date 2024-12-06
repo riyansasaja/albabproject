@@ -136,6 +136,7 @@ class Home extends BaseController
 
         if (!$this->validateData([], $validationRule)) {
             $data = ['errors' => $this->validator->getErrors()];
+            dd($data);
             session()->setFlashdata('error', $data);
             return redirect()->to('/');
         }
